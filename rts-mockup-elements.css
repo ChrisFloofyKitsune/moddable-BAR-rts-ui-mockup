@@ -1,0 +1,45 @@
+/* styles for RTS mockup elements */
+/*  
+    'Minimap',
+    'Metal Resource',
+    'Energy Resource',
+    'Unit Info',
+    'Unit Commands',
+    'Unit State Toggles',
+    'Build Menu',
+    'Unit Selection',
+*/
+body {
+    --mockup-width: 1920px;
+    --mockup-height: 1080px;
+}
+
+.minimap {
+    aspect-ratio: 1;
+    width: calc(var(--mockup-width) * 0.1);
+}
+
+.metal-resource, .energy-resource {
+    aspect-ratio: 5;
+    width: calc(var(--mockup-width) * 0.1);
+}
+
+.unit-info {
+    aspect-ratio: 3/2;
+    width: calc(var(--mockup-width) * 0.15);
+}
+
+.unit-commands {
+    aspect-ratio: 3/2;
+    width: calc(var(--mockup-width) * 0.15);
+}
+
+.unit-state-toggles {
+    aspect-ratio: 2/1;
+    width: calc(var(--mockup-width) * 0.15);
+}
+
+.build-menu {
+    aspect-ratio: 5/4;
+    width: calc(var(--mockup-width) * 0.15);
+}
