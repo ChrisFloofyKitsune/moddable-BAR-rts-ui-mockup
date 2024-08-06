@@ -3,9 +3,10 @@ console.log(document);
 let dropZoneId = null;
 
 const exampleRtsUiNames = [
-    'Minimap',
     'Metal Resource',
     'Energy Resource',
+    'Map Info',
+    'Minimap',
     'Unit Info',
     'Unit Commands',
     'Unit State Toggles',
@@ -36,13 +37,22 @@ for (const name of exampleRtsUiNames) {
     console.log(name);
     const codeSafeName = name.toLowerCase().replaceAll(' ', '-');
 
-    const newElement = document.createElement('div');
+    const newElement = document.createElement('img');
     newElement.classList.add('ui-element');
     newElement.classList.add(codeSafeName);
     newElement.id = codeSafeName;
     newElement.setAttribute('draggable', 'true');
-    newElement.textContent = name;
+    newElement.src = `./images/${codeSafeName}.png`;
     draggablesList.appendChild(newElement);
+    
+    newElement.style.setProperty('--scaling', 'calc(var(--mockup-width, 1920) / 1920)');
+    
+    timeout = setTimeout(() => {
+        rect = newElement.getBoundingClientRect();
+        newElement.style.setProperty('--width', `${rect.width * 1.1}px`);
+        newElement.style.setProperty('--aspect-ratio', `${rect.width / rect.height}`);
+        newElement.style.setProperty('width', `calc(var(--scaling) * var(--width))`);
+    }, 100);
 
     // add event listeners for drag and drop
     setupDragEvents(newElement);
@@ -221,8 +231,8 @@ const observer = new ResizeObserver(entries => {
     for (let entry of entries) {
         const {width, height} = entry.contentRect;
         // and update the css variables on the body
-        document.body.style.setProperty('--mockup-width', `${width}px`);
-        document.body.style.setProperty('--mockup-height', `${height}px`);
+        document.body.style.setProperty('--mockup-width', `${width}`);
+        document.body.style.setProperty('--mockup-height', `${height}`);
     }
 });
 observer.observe(mockup);
